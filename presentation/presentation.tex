@@ -1,0 +1,89 @@
+\documentclass[10pt, aspectratio=169]{beamer}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{graphicx}
+
+\usetheme{Goettingen}
+\usecolortheme{seahorse}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{hyperref}
+%\useoutertheme{miniframes} % Alternatively: miniframes, infolines, split
+\useinnertheme{circles}
+\usetikzlibrary{fit}
+\usepackage{wrapfig}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplotstable}
+\usepackage{outlines}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage[numbers]{natbib}
+\usepackage{caption}
+\titlegraphic{
+    \includegraphics[width=1.55cm]{img/logo copy.png}
+    }
+    \title{Music Genre Classification Using Multiple Classifiers} 
+    \subtitle{Machine Learning Project}
+    \subject{Random Forests}
+    \author{Lisa Korntheuer, Jan Birkert, Adrian Desiderato, Jan Wangerin, Spyridon Spyropoulos}
+    \institute{Technische Hochschule Ulm}
+    \date{\today}
+    \logo{
+        \includegraphics[width=1.55cm]{img/logo copy.png}
+        }
+        %\setbeamercolor{subsection in head/foot}{bg=UBCgrey,fg=white}
+        \setbeamertemplate{footline}[frame number]
+        \AtBeginSection[]{%
+        \setbeamertemplate{footline}{}
+        \begin{frame}[noframenumbering]
+            \frametitle{Table of Contents}
+            \tableofcontents[currentsection]
+        \end{frame}
+        \setbeamertemplate{footline}[frame number]
+        }
+\begin{document}
+
+\newcommand{\subtext}[1]{$_{\text{#1}}$}
+
+\begin{frame}
+    \maketitle
+\end{frame}
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering]
+    \frametitle{Table of Contents}
+    \tableofcontents
+\end{frame}
+\AtBeginSection[]{
+        }
+        \setbeamertemplate{footline}[frame number]
+\section{Introduction}
+\begin{frame}
+    \frametitle{Introduction}
+    \begin{outline}
+        \1 This is an awesome slide with very important information. 
+    \end{outline}
+\end{frame}
+\AtBeginSection[]{%
+        \setbeamertemplate{footline}{}
+        \begin{frame}[noframenumbering]
+            \frametitle{Table of Contents}
+            \tableofcontents[currentsection]
+        \end{frame}
+        \setbeamertemplate{footline}[frame number]
+        }
+
+
+
+\setbeamertemplate{footline}{}
+\begin{frame}[noframenumbering, allowframebreaks]
+    \frametitle{References}
+    {\scriptsize
+    \bibliography{references.bib}
+    \bibliographystyle{IEEEtran}
+    }
+\end{frame}
+
+\end{document}
