@@ -475,3 +475,5 @@ TSWLatexianTemp*
 
 # But not the presentation.pdf in the presentation/build directory
 !presentation/build/presentation.pdf
+*.wav
+*.mp3
