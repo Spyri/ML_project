@@ -22,6 +22,12 @@
 \usepackage{amsmath}
 \usepackage[numbers]{natbib}
 \usepackage{caption}
+\usepackage{colortbl} 
+\usepackage{xcolor}
+\setbeamertemplate{itemize item}[circle] % Level 1 bullets
+\setbeamertemplate{itemize subitem}[square] % Level 2 bullets
+\setbeamertemplate{itemize subsubitem}[triangle] % Level 3 bullets
+
 \titlegraphic{
     \includegraphics[width=1.55cm]{img/logo copy.png}
     }
@@ -93,28 +99,63 @@
 \section{Modeling}
 \subsection{Random Forest}
 \begin{frame}
-    \frametitle{Modeling - Random Forest}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \frametitle{Modeling --- Random Forest}
+    \begin{itemize}
+        \item Two experimenting approaches using GridSearchCV:
+        \begin{itemize}
+            \item Soft hyperparameter tuning:
+            \begin{itemize}
+                \item Number of trees (default = 100)
+                \item Splitting criterion (default = Gini)
+            \end{itemize}
+            \item Heavy hyperparameter tuning:
+            \begin{itemize}
+                \item Number of trees (default = 100)
+                \item Splitting criterion (default = Gini)
+                \item Maximum depth (default = None)
+                \item Minimum samples per leaf (default = 1)
+                \item Minimum samples per split (default = 2)
+                \item Maximum features (default = sqrt)
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Modeling --- Random Forest: Results}
+    \begin{itemize}
+        \item Soft hyperparameter tuning:
+        \begin{itemize}
+            \item Training time: 20s
+            \item Accuracy: 0.760
+            \item Parameters: Number of trees = 1000, Splitting criterion = Gini
+        \end{itemize}
+        \item Heavy hyperparameter tuning:
+        \begin{itemize}
+            \item Training time: 18min
+            \item Accuracy: 0.760
+            \item Parameters: Exactly the same forest as in the soft hyperparameter tuning
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \subsection{Decision Trees}
 \begin{frame}
-    \frametitle{Modeling - Decision Trees}
+    \frametitle{Modeling --- Decision Trees}
     \begin{outline}
         \1 This is an awesome slide with very important information. 
     \end{outline}
 \end{frame}
 \subsection{K-Nearest-Neighbors}
 \begin{frame}
-    \frametitle{Modeling - K-Nearest-Neighbors}
+    \frametitle{Modeling --- K-Nearest-Neighbors}
     \begin{outline}
         \1 This is an awesome slide with very important information. 
     \end{outline}
 \end{frame}
 \subsection{Artificial Neural Network}
 \begin{frame}
-    \frametitle{Modeling - Artificial Neural Network}
+    \frametitle{Modeling --- Artificial Neural Network}
     \begin{outline}
         \1 This is an awesome slide with very important information. 
     \end{outline}   
@@ -122,17 +163,61 @@
 \section{Evaluation}
 \subsection{Comparison}
 \begin{frame}
-    \frametitle{Comparison}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \frametitle{Comparison --- Results}
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Model}         & \textbf{Accuracy} & \textbf{F1 Score } & \textbf{ROC AUC } \\ \hline
+        MLP                    & 0.770             & 0.772                       & 0.956                   \\ \hline
+        Random Forest          & 0.760             & 0.761                       & 0.958                   \\ \hline
+        KNN                    & 0.740             & 0.743                       & 0.913                   \\ \hline
+        Decision Tree          & 0.530             & 0.532                       & 0.759                   \\ \hline
+       
+        
+        \end{tabular}
+        \caption{Model performance comparison.}
+        \label{tab:model_performance}
+        \end{table}
+
+\end{frame}
+\begin{frame}
+    \frametitle{Comparison --- ROC Curves}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.44\textwidth]{img/roc.png}
+        \caption{ROC Curves of the different classifiers}
+    \end{figure}
 \end{frame}
 \subsection{Experimentation}
 \begin{frame}
-    \frametitle{Experimentation}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \frametitle{Experimentation --- 13 Datapoints}
+    
+    \begin{table}[h!]
+        \centering
+        \resizebox{12cm}{3.3cm}{
+        \begin{tabular}{|c|l|l|l|l|l|}
+        \hline
+        \textbf{Datapoint} & \textbf{True Label} & \textbf{Random Forest Prediction} & \textbf{KNN Prediction} & \textbf{Decision Tree Prediction} & \textbf{ANN Prediction} \\ \hline
+        0                  & pop                 & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop & \cellcolor{red!30}hiphop          & \cellcolor{red!30}blues \\ \hline
+        1                  & pop                 & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop & \cellcolor{red!30}disco           & \cellcolor{red!30}hiphop \\ \hline
+        2                  & pop                 & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop \\ \hline
+        3                  & metal               & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop & \cellcolor{red!30}hiphop          & \cellcolor{red!30}blues \\ \hline
+        4                  & metal               & \cellcolor{red!30}hiphop          & \cellcolor{red!30}blues  & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop \\ \hline
+        5                  & blues               & \cellcolor{green!30}blues         & \cellcolor{green!30}blues & \cellcolor{red!30}disco           & \cellcolor{green!30}blues \\ \hline
+        6                  & blues               & \cellcolor{green!30}blues         & \cellcolor{green!30}blues & \cellcolor{red!30}country         & \cellcolor{red!30}hiphop \\ \hline
+        7                  & blues               & \cellcolor{red!30}hiphop          & \cellcolor{red!30}reggae & \cellcolor{red!30}hiphop          & \cellcolor{red!30}reggae \\ \hline
+        8                  & classical           & \cellcolor{red!30}jazz            & \cellcolor{red!30}jazz   & \cellcolor{red!30}disco           & \cellcolor{red!30}hiphop \\ \hline
+        9                  & classical           & \cellcolor{red!30}jazz            & \cellcolor{red!30}jazz   & \cellcolor{red!30}country         & \cellcolor{red!30}blues \\ \hline
+        10                 & classical           & \cellcolor{red!30}jazz            & \cellcolor{red!30}jazz   & \cellcolor{red!30}jazz            & \cellcolor{red!30}hiphop \\ \hline
+        11                 & rock                & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop & \cellcolor{red!30}hiphop          & \cellcolor{red!30}reggae \\ \hline
+        12                 & rock                & \cellcolor{red!30}hiphop          & \cellcolor{red!30}blues  & \cellcolor{red!30}hiphop          & \cellcolor{red!30}hiphop \\ \hline
+        13                 & rock                & \cellcolor{red!30}hiphop          & \cellcolor{red!30}reggae & \cellcolor{red!30}hiphop          & \cellcolor{red!30}reggae \\ \hline
+        \end{tabular}
+}
+        \caption{Comparison of predictions from Random Forest, KNN, Decision Tree, and ANN against true labels.}
+        \label{tab:model_predictions}
+        \end{table}
 \end{frame}
 \section{Conclusion}
 \begin{frame}
