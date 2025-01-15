@@ -21,6 +21,7 @@
 \usepackage{algpseudocode}
 \usepackage{amsmath}
 \usepackage[numbers]{natbib}
+\usepackage{cite}
 \usepackage{caption}
 \usepackage{colortbl} 
 \usepackage{xcolor}
@@ -183,9 +184,33 @@
 \begin{frame}
     \frametitle{Modeling --- Artificial Neural Network}
     \begin{outline}
-        \1 This is an awesome slide with very important information. 
+        \1 Goal: Find the \textbf{best combination of hyperparameter values} to train a \textbf{Multilayer Perceptron} model
+        \1 The \textbf{following hyperparameters} were examined by means of a \textbf{Randomized Search Cross Validation}:
+            \2 Two hidden layers with random number of neurons $\in[2, 200]$
+            \2 The activation functions \texttt{tanh}, \texttt{relu} or \texttt{logistic}
+            \2 $\alpha$-values of either $0.0001$, $0.001$ or $0.05$
+            \2 A random learning rate $\in[0.001, 0.01]$
+            \2 A batch size $\in[16, 128]$
+            \2 \texttt{constant}, \texttt{adaptive} and \texttt{invscaling} learning rates were tested
+        \1 Cross Validation was run with \textbf{10 folds}
     \end{outline}   
 \end{frame}
+\begin{frame}{Modeling --- Artificial Neural Network: Results}
+    \begin{outline}
+        \1 After running the hyperparameter tuning \textbf{10 times}, our best result was:
+            \2 Two hidden layers with random number of neurons $\in[2, 200]$
+            \2 The activation functions \texttt{tanh}, \texttt{relu} or \texttt{logistic}
+            \2 $\alpha$-value of $0.001$
+            \2 A random learning rate of $\sim 0.0014$
+            \2 A batch size of $63$
+            \2 An \texttt{invscaling} learning rate
+        \1 With these parameters, we achieved a \textbf{train accuracy of $\mathbf{97.25\%}$} and a \textbf{test accuracy of $\mathbf{77.0\%}$}
+        \1 \textbf{Remarks:}
+            \2 \textit{We also tested with a third hidden layer without improvement}
+            \2 Additionally, we also tried the \texttt{lbfgs} activation function which led to way worse results
+    \end{outline}
+\end{frame}
+
 \section{Evaluation}
 \subsection{Comparison}
 \begin{frame}
@@ -249,16 +274,22 @@
 \begin{frame}
     \frametitle{Conclusion}
     \begin{outline}
-        \1 This is an awesome slide with very important information. 
+        \1 Each classifier (KNN, Decision Tree, Random Forest, ANN) had different trade-offs
+        \1 Decision Trees performed poorly, even with pruning
+        \1 Random Forest and ANN showed strong performance
+            \2 ANN with best accuracy ($\sim 77\%$)
+            \2 kNN showed surprisingly good results
+        \1 Random Forests, ANNs, and kNNs are suitable for music classification
+            \2 However: $\sim 25\%$ of predictions may be incorrect
+        \1 Practical example with own tracks showed poor accuracy
     \end{outline}
 \end{frame}
 \setbeamertemplate{footline}{}
-\begin{frame}[noframenumbering, allowframebreaks]
+\begin{frame}[noframenumbering]
     \frametitle{References}
-    {\scriptsize
-    \bibliography{references.bib}
-    \bibliographystyle{IEEEtran}
-    }
+    {\tiny\bibliography{references.bib}
+    \bibliographystyle{IEEEtranN}
+    \nocite{*}}
 \end{frame}
 
 \end{document}
