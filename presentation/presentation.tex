@@ -146,13 +146,39 @@
         \1 This is an awesome slide with very important information. 
     \end{outline}
 \end{frame}
+
 \subsection{K-Nearest-Neighbors}
 \begin{frame}
     \frametitle{Modeling --- K-Nearest-Neighbors}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \textbf{Hyperparameter tuning} of 3 selected parameters with \textit{GridSearchCV}:
+    \begin{itemize}
+        \item \textbf{n\_neighbors} : number of neighbors $k$
+        \item \textbf{weights} : weights assigned to the nearest neighbors
+            \begin{itemize} 
+                \item 'uniform'
+                \item 'distance'
+            \end{itemize}
+        \item \textbf{metric} : method for distance computation
+            \begin{itemize}
+                \item 'euclidean'
+                \item 'manhattan'
+            \end{itemize}
+    \end{itemize}
 \end{frame}
+\begin{frame}
+    \frametitle{Modeling --- K-Nearest-Neighbors: Results}
+    \begin{itemize}
+        \item \textbf{Optimal parameter set:}
+            \begin{itemize}
+                \item $k=3$ nearest neighbors
+                \item distance-dependent weights
+                \item Manhattan distance
+            \end{itemize}
+            Remark: Distance-dependent weights might lead to overfitting
+        \item \textbf{Test accuracy:} 0.74
+    \end{itemize}
+\end{frame}
+
 \subsection{Artificial Neural Network}
 \begin{frame}
     \frametitle{Modeling --- Artificial Neural Network}
