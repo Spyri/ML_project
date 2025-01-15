@@ -85,18 +85,58 @@
 \section{Data Understanding}
 \begin{frame}
     \frametitle{Data Understanding}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
-
+    \begin{itemize}\setlength\itemsep{10pt}
+        \item GTZAN Dataset: collections of same length song snippets\begin{itemize}
+            \item 1000 soundtracks
+            \item 10 genres, 100 soundtracks per genre
+        \end{itemize}
+        \item 29 different features have been extracted using librosa library\begin{itemize}
+            \item Fourier analysis
+            \item mean and variance for every feature (except tempo) $\rightarrow$ 57 features
+            \item only numerical data
+            \item no missing values
+        \end{itemize}
+    \end{itemize}
 \end{frame}
+
+\begin{frame}
+    \frametitle{Data Understanding}
+    \begin{itemize}\setlength\itemsep{12pt}
+        \item Temporal features: \begin{itemize}
+            \item sign changes, loudness
+        \end{itemize}
+        \item Spectral features: \begin{itemize}
+            \item information about contained frequencies
+        \end{itemize}
+        \item Rhythmic features: \begin{itemize}
+            \item tempo, information about contained rhythms
+        \end{itemize}
+        \item Harmonic features: \begin{itemize}
+            \item information about relations between different pitches
+        \end{itemize}
+        \item Mel-Frequency Cepstral Coefficients (MFCCs): \begin{itemize}
+            \item information about short term energy spectra
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Data Understanding}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{Heatmap.jpg}
+    \end{figure}
+\end{frame}
+
 \section{Data Preparation}
 \begin{frame}
     \frametitle{Data Preparation}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \begin{itemize}\setlength\itemsep{12pt}
+        \item Used LabelEncoder to encode genre labels: 0 - 9
+        \item Used MinMaxScaler to scale feature data to a scale between 0 an 1
+    \end{itemize}
 \end{frame}
+
 \section{Modeling}
 \subsection{Random Forest}
 \begin{frame}
@@ -143,9 +183,23 @@
 \subsection{Decision Trees}
 \begin{frame}
     \frametitle{Modeling --- Decision Trees}
-    \begin{outline}
-        \1 This is an awesome slide with very important information. 
-    \end{outline}
+    \begin{itemize}\setlength\itemsep{12pt}
+        \item No pruning: Test Accuracy 51\%  \quad Depth: 19
+        \item Post-Pruning: Test Accuracy 49\% \quad Depth: 14 \begin{itemize}
+            \item Hyperparameter Tuning: regularization parameter $\alpha$
+        \end{itemize}
+        \item \textbf{Pre-Pruning: Test Accuracy 53\% \quad Depth: 9}\begin{itemize}
+            \item Hyperparameter Tuning: depth, splitting criterion (result "entropy")
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modeling --- Decision Trees}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{DTFeatureImportance.jpg}
+    \end{figure}
 \end{frame}
 
 \subsection{K-Nearest-Neighbors}
